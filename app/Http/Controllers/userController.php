@@ -9,6 +9,8 @@
     use Illuminate\Http\Request;
 
     // use framework\src\Illuminate\Http;
+
+    use Illuminate\Support\Facades\Storage;
    
 
     class userController extends Controller{
@@ -21,6 +23,11 @@
 
             if($request->hasFile('image')){
                 $fileName= $request->image->getClientOriginalName();
+
+                if(auth()->user()->avatar){
+                    Storage::delete('/public/images/'.auth()->user()->avatar);
+                }
+
                 $request->image->storeAs('images', $fileName, 'public');
 
                 auth()->user()->update(['avatar'=>$fileName]);
