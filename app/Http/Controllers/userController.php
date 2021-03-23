@@ -13,8 +13,10 @@
 
 
         public function uploadAvatar(Request $request){
+
             $request->image->store('images', 'public');
-            return 'uploaded';
+            return 'Image uploaded';
+
         }
 
         public function contact(){
