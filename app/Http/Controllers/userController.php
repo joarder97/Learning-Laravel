@@ -25,13 +25,13 @@
 
                 User::find(1)->update(['avatar'=>$fileName]);
 
-                return "uploaded";
-            }else{
+                
+            }
 
             // $fileName= $request->getClientOriginalName();
 
-            return "NU";
-            }
+                return redirect()->back();
+            
            
         }
 
