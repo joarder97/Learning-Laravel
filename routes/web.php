@@ -4,6 +4,9 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\UserController;
 
+use Illuminate\Http\Request;
+
+
 
 
 /*
@@ -22,7 +25,12 @@ Route::get('/', function () { // "/" means base url
 });
 
 Route::get('/contact', [userController::class, 'contact']);
+
+
 Auth::routes();
+
+Route::post('/upload', [userController::class, 'uploadAvatar']);
+
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
