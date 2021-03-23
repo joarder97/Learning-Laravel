@@ -7,6 +7,8 @@
     use DB;
 
     use Illuminate\Http\Request;
+
+    // use framework\src\Illuminate\Http;
    
 
     class userController extends Controller{
@@ -14,9 +16,23 @@
 
         public function uploadAvatar(Request $request){
 
-            $request->image->store('images', 'public');
-            return 'Image uploaded';
+            // $request->image->store('images', 'public');
+            // return 'Image uploaded';
 
+            if($request->hasFile('image')){
+                $fileName= $request->image->getClientOriginalName();
+                $request->image->storeAs('images', $fileName, 'public');
+
+                User::find(1)->update(['avatar'=>$fileName]);
+
+                return "uploaded";
+            }else{
+
+            // $fileName= $request->getClientOriginalName();
+
+            return "NU";
+            }
+           
         }
 
         public function contact(){
