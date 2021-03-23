@@ -23,7 +23,7 @@
                 $fileName= $request->image->getClientOriginalName();
                 $request->image->storeAs('images', $fileName, 'public');
 
-                User::find(1)->update(['avatar'=>$fileName]);
+                auth()->user()->update(['avatar'=>$fileName]);
 
                 
             }
