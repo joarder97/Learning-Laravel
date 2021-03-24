@@ -24,9 +24,11 @@
             if($request->hasFile('image')){
                 $fileName= $request->image->getClientOriginalName();
 
-                if(auth()->user()->avatar){
-                    Storage::delete('/public/images/'.auth()->user()->avatar);
-                }
+                // if(auth()->user()->avatar){
+                //     Storage::delete('/public/images/'.auth()->user()->avatar);
+                // }
+                
+                $this->deleteOldImage();
 
                 $request->image->storeAs('images', $fileName, 'public');
 
@@ -40,6 +42,12 @@
                 return redirect()->back();
             
            
+        }
+
+        protected function deleteOldImage(){
+            if(auth()->user()->avatar){
+                Storage::delete('/public/images/'.auth()->user()->avatar);
+            }
         }
 
         public function contact(){
