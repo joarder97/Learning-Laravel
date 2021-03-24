@@ -59,7 +59,7 @@
                                     @if(Auth::user()->avatar)
                                    
 
-                                    <img src="{{asset('/storage/images/'.Auth::user()->avatar)}}" width="40" />
+                                        <img src="{{asset('/storage/images/'.Auth::user()->avatar)}}" width="40" />
 
                                     @endif
 

@@ -8,9 +8,11 @@
 
     use Illuminate\Http\Request;
 
-    // use framework\src\Illuminate\Http;
+    use framework\src\Illuminate\Http;
 
     use Illuminate\Support\Facades\Storage;
+
+    use App\Providers\RouteServiceProvider;
    
 
     class userController extends Controller{
@@ -18,37 +20,15 @@
 
         public function uploadAvatar(Request $request){
 
-            // $request->image->store('images', 'public');
-            // return 'Image uploaded';
-
             if($request->hasFile('image')){
-                $fileName= $request->image->getClientOriginalName();
-
-                // if(auth()->user()->avatar){
-                //     Storage::delete('/public/images/'.auth()->user()->avatar);
-                // }
-                
-                $this->deleteOldImage();
-
-                $request->image->storeAs('images', $fileName, 'public');
-
-                auth()->user()->update(['avatar'=>$fileName]);
-
-                
-            }
-
-            // $fileName= $request->getClientOriginalName();
-
-                return redirect()->back();
             
-           
+                User::uploadAvatar($request->image);
+            }
+
+            return redirect()->back();
         }
 
-        protected function deleteOldImage(){
-            if(auth()->user()->avatar){
-                Storage::delete('/public/images/'.auth()->user()->avatar);
-            }
-        }
+
 
         public function contact(){
 
