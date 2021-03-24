@@ -23,11 +23,11 @@
             if($request->hasFile('image')){
             
                 User::uploadAvatar($request->image);
-                $request->session()->flash('message', 'Image Uploaded Successfully');
-                return redirect()->back();
+                // $request->session()->flash('message', 'Image Uploaded Successfully');
+                return redirect()->back()->with('message', 'Image Uploaded Successfully');
             }else{
-                $request->session()->flash('message_', '***Please select the image file first***');
-                return redirect()->back();
+                // $request->session()->flash('error', '***Please select the image file first***');
+                return redirect()->back()->with('error', '***Please select the image file first***');
             }
 
            
